@@ -7,7 +7,22 @@ const entry = ref('');
 const mood = ref('');
 
 // Add Code Here
-
+function submitPost() {
+    axios.post('http://localhost:8000/posts', {
+        subject: subject.value,
+        entry: entry.value,
+        mood: mood.value
+    })
+    .then((response) => {
+        console.log(response.data);
+        subject.value = '';
+        entry.value = '';
+        mood.value = '';
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
 
 </script>
 
@@ -24,14 +39,16 @@ const mood = ref('');
 
         Mood:
         <!-- TODO: Build a dropdown list here for selecting the mood -->
+        <select v-model='mood'>
+            <option v-for="(m, index) in moods" :key='index' :value='m'>{{ m }}</option>
+        </select>
         <br>
 
         <br>
-        <button>Submit New Post</button>
+        <button @click="submitPost">Submit New Post</button>
 
         <hr>
         <RouterLink to="/ViewPosts/">Click  here to return to Main Page</RouterLink>  
        
     </div>
 </template>
-
