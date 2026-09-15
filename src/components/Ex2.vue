@@ -48,7 +48,7 @@ function reset() {
             <p v-if="scoreA >= maxScore && scoreB >= maxScore">It's a tie!</p>
             <p v-else-if="scoreA >= maxScore">Winner: {{ teamA.toUpperCase() }}</p>
             <p v-else-if="scoreB >= maxScore">Winner: {{ teamB.toUpperCase() }}</p>
-            <p v-else>No winner yet</p>
+            <p v-else>No winner yet. Keep playing!</p>
         </div>
 
 
